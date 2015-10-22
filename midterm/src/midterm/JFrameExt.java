@@ -145,7 +145,7 @@ public class JFrameExt extends JFrame implements ActionListener {
 			      propName  =  pd [i].getName ( );
 			 
 			      //Set propName as the text for the corresponding JLable.
-			     
+			      jlbPropNames[i].setText(propName);
 			 
 			      Method  mget = pd[i].getReadMethod();
 			      Object robj = null;
@@ -162,10 +162,10 @@ public class JFrameExt extends JFrame implements ActionListener {
 			      }
 			       //convert the received object contents to a String
 			       String sobj = robj.toString ( );
-			 
+			       
 			 
 			      //Set the String sobj as the text in the corresponding text field.
-			 
+			       jtfPropValues[i].setText(sobj);
 			 
 			  }
 			}
@@ -185,9 +185,11 @@ public class JFrameExt extends JFrame implements ActionListener {
 		
 		JPanel jpPropNames = new JPanel();
 		jpInspector.add(jpPropNames);
+		jpPropNames.setLayout(new GridLayout(10, 1, 0, 0));
 		
 		JPanel jpPropValues = new JPanel();
 		jpInspector.add(jpPropValues);
+		jpPropValues.setLayout(new GridLayout(10, 1, 0, 0));
 		
 		   //Creating JLabel objects one by one in a loop
 	    for (int j = 0; j < 10; j++)
