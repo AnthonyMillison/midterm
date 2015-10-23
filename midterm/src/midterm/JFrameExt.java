@@ -24,7 +24,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class JFrameExt extends JFrame {
+public class JFrameExt extends JFrame implements ActionListener {
 
 	//shared variables
 	private JPanel targetBeanObject = null;
@@ -145,7 +145,7 @@ public class JFrameExt extends JFrame {
 			      propName  =  pd [i].getName ( );
 			 
 			      //Set propName as the text for the corresponding JLable.
-			     
+			      jlbPropNames[i].setText(propName);
 			 
 			      Method  mget = pd[i].getReadMethod();
 			      Object robj = null;
@@ -162,10 +162,10 @@ public class JFrameExt extends JFrame {
 			      }
 			       //convert the received object contents to a String
 			       String sobj = robj.toString ( );
-			 
+			       
 			 
 			      //Set the String sobj as the text in the corresponding text field.
-			 
+			       jtfPropValues[i].setText(sobj);
 			 
 			  }
 			}
@@ -184,10 +184,14 @@ public class JFrameExt extends JFrame {
 		jpInspector.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		JPanel jpPropNames = new JPanel();
+		jpPropNames.setBackground(Color.PINK);
 		jpInspector.add(jpPropNames);
+		jpPropNames.setLayout(new GridLayout(10, 1, 0, 0));
 		
 		JPanel jpPropValues = new JPanel();
+		jpPropValues.setBackground(Color.PINK);
 		jpInspector.add(jpPropValues);
+		jpPropValues.setLayout(new GridLayout(10, 1, 0, 0));
 		
 		   //Creating JLabel objects one by one in a loop
 	    for (int j = 0; j < 10; j++)
@@ -205,11 +209,7 @@ public class JFrameExt extends JFrame {
 	      jtfPropValues[j] = new JTextField( "" );
 	      jtfPropValues[j].setColumns(10);
 	      //Register this as the listener with JTextField object
-	      jtfPropValues[j].addActionListener(new ActionListener(){
-	    	 public void actionPerformed(ActionEvent E) {
-	    		 
-	    	 }
-	     });
+	      jtfPropValues[j].addActionListener(this);
 	 
 	      //Add JTextField object to JPanel
 	      jpPropValues.add(jtfPropValues[j]);
@@ -217,4 +217,73 @@ public class JFrameExt extends JFrame {
 	
 	}
 
-}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		 int i;
+	      String propName="", propValue="";
+	     
+	      //Determine the name, value and index of the property that changed.
+	      for (i=0; i<jtfPropValues.length;i++)
+	      {
+	        if (e.getSource()== jtfPropValues[i])
+	        {
+	         
+	          break;
+	        }
+	      }
+	 
+	      //Get the property name and the property value from the
+	      //JLabel and JTextfield corresponding to the i value.
+	      propValue = jtfPropValues[i].getText();
+	      propName = jlbPropNames[i].getName();
+	 
+	 
+	      //Note that the property index for the above property in the pd
+	      //array is the same. So you can go to that index in pd array and
+	      //access its property type .
+	      Class propType=pd[i].getPropertyType();
+	      //Get the property type as a String
+	      String propTypeName = propType.getName( );
+	 
+	 
+	      //Create Object array for storing parameters
+	      Object [ ] params = new Object [1];
+	 
+	      //Depending upon property name, create correct parameter object.
+	      if (propTypeName.equals ("int") )
+	      {
+	        params [0] = new Integer (Integer.parseInt ( propValue ) );
+	      }
+	      else if (propTypeName.equals ("double"))
+	      {
+	        params [0] = new Double (Double.parseDouble ( propValue ));
+	      }
+	      else if (propTypeName.equals ("boolean"))
+	      {
+	        params [0] = new Boolean (propValue );
+	      }
+	      else if (propTypeName.equals ("java.lang.String" ) )
+	      {
+	        params [0] = propValue;
+	      }
+	      //Get the set method object.
+	      Method mset = pd[i].getWriteMethod();
+	      //Invoke set method and pass it target bean and parameters.
+	      try
+	      {
+	        mset.invoke (targetBeanObject, params);
+	      }
+	      catch (IllegalAccessException ex)
+	      {
+	      }
+	      catch (IllegalArgumentException ex)
+	      {
+	      }
+	      catch (InvocationTargetException ex)
+	      {
+	      }
+	    }
+		
+	}
+
+
