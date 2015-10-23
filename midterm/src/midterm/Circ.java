@@ -22,7 +22,7 @@ public class Circ extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d= (Graphics2D)g;
-		if (myBackColor.equalsIgnoreCase("blue:")) {
+		if (myBackColor.equalsIgnoreCase("blue")) {
 			this.setBackground(Color.BLUE);
 		}
 		if (myFillColor.equalsIgnoreCase("yes")) {
@@ -32,14 +32,7 @@ public class Circ extends JPanel {
 		}
 	}
 	
-	/*public void paintComponent(Graphics g) {
-   super.paintComponent(g);
-   Graphics2D g2d = (Graphics2D)g;
-   // Assume x, y, and diameter are instance variables.
-   Ellipse2D.Double circle = new Ellipse2D.Double(x, y, diameter, diameter);
-   g2d.fill(circle);
-   ...
-}*/
+
 
 	public int getMyXStart() {
 		return myXStart;
@@ -47,6 +40,7 @@ public class Circ extends JPanel {
 
 	public void setMyXStart(int myXStart) {
 		this.myXStart = myXStart;
+		this.repaint();
 	}
 
 	public int getMyYStart() {
@@ -55,6 +49,7 @@ public class Circ extends JPanel {
 
 	public void setMyYStart(int myYStart) {
 		this.myYStart = myYStart;
+		this.repaint();
 	}
 
 	public int getMyWidth() {
@@ -63,6 +58,7 @@ public class Circ extends JPanel {
 
 	public void setMyWidth(int myWidth) {
 		this.myWidth = myWidth;
+		this.repaint();
 	}
 
 	public int getMyHeight() {
@@ -71,6 +67,7 @@ public class Circ extends JPanel {
 
 	public void setMyHeight(int myHeight) {
 		this.myHeight = myHeight;
+		this.repaint();
 	}
 
 	public String getMyBackClolor() {
@@ -79,6 +76,8 @@ public class Circ extends JPanel {
 
 	public void setMyBackClolor(String myBackClolor) {
 		this.myBackColor = myBackClolor;
+		System.out.println(myBackClolor);
+		this.repaint();
 	}
 
 	public String getMyForeColor() {
@@ -87,6 +86,7 @@ public class Circ extends JPanel {
 
 	public void setMyForeColor(String myForeColor) {
 		this.myForeColor = myForeColor;
+		this.repaint();
 	}
 
 	public String getMyFillColor() {
@@ -95,6 +95,8 @@ public class Circ extends JPanel {
 
 	public void setMyFillColor(String myFillColor) {
 		this.myFillColor = myFillColor;
+		this.repaint();
 	}
 
 }
+
