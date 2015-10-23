@@ -19,30 +19,50 @@ public class Rect extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if (myBackColor.equalsIgnoreCase("blue:")) {
+		if (myBackColor.equalsIgnoreCase("blue")) {
 			this.setBackground(Color.BLUE);
 		}
+		if (myBackColor.equalsIgnoreCase("green")) {
+			this.setBackground(Color.GREEN);
+		}
+		if (myBackColor.equalsIgnoreCase("yellow")) {
+			this.setBackground(Color.YELLOW);
+		}
+	
+		
+		
 		if (myFillColor.equalsIgnoreCase("yes")) {
-			g.drawRect(myXStart, myYStart, myWidth, myHeight);
-		} else {
+			if(myForeColor.equalsIgnoreCase("blue")){
+				this.setForeground(Color.BLUE);
+			}
+			
+			if(myForeColor.equalsIgnoreCase("green")){
+				this.setForeground(Color.GREEN);
+			}
+			
 			g.fillRect(myXStart, myYStart, myWidth, myHeight);
+		} else {
+			g.drawRect(myXStart, myYStart, myWidth, myHeight);
 		}
 	}
 
 	public int getMyXStart() {
-		return myXStart;
+		return myXStart;	
 	}
 
 	public void setMyXStart(int myXStart) {
 		this.myXStart = myXStart;
+		this.repaint();
 	}
 
 	public int getMyYStart() {
 		return myYStart;
+		
 	}
 
 	public void setMyYStart(int myYStart) {
 		this.myYStart = myYStart;
+		this.repaint();
 	}
 
 	public int getMyWidth() {
@@ -51,6 +71,7 @@ public class Rect extends JPanel {
 
 	public void setMyWidth(int myWidth) {
 		this.myWidth = myWidth;
+		this.repaint();
 	}
 
 	public int getMyHeight() {
@@ -59,6 +80,7 @@ public class Rect extends JPanel {
 
 	public void setMyHeight(int myHeight) {
 		this.myHeight = myHeight;
+		this.repaint();
 	}
 
 	public String getMyBackClolor() {
@@ -67,6 +89,8 @@ public class Rect extends JPanel {
 
 	public void setMyBackClolor(String myBackClolor) {
 		this.myBackColor = myBackClolor;
+		System.out.println(myBackClolor);
+		this.repaint();
 	}
 
 	public String getMyForeColor() {
@@ -75,6 +99,7 @@ public class Rect extends JPanel {
 
 	public void setMyForeColor(String myForeColor) {
 		this.myForeColor = myForeColor;
+		this.repaint();
 	}
 
 	public String getMyFillColor() {
@@ -83,6 +108,7 @@ public class Rect extends JPanel {
 
 	public void setMyFillColor(String myFillColor) {
 		this.myFillColor = myFillColor;
+		this.repaint();
 	}
 
 }

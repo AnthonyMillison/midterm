@@ -184,10 +184,12 @@ public class JFrameExt extends JFrame implements ActionListener {
 		jpInspector.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		JPanel jpPropNames = new JPanel();
+		jpPropNames.setBackground(Color.PINK);
 		jpInspector.add(jpPropNames);
 		jpPropNames.setLayout(new GridLayout(10, 1, 0, 0));
 		
 		JPanel jpPropValues = new JPanel();
+		jpPropValues.setBackground(Color.PINK);
 		jpInspector.add(jpPropValues);
 		jpPropValues.setLayout(new GridLayout(10, 1, 0, 0));
 		
@@ -207,11 +209,7 @@ public class JFrameExt extends JFrame implements ActionListener {
 	      jtfPropValues[j] = new JTextField( "" );
 	      jtfPropValues[j].setColumns(10);
 	      //Register this as the listener with JTextField object
-	      jtfPropValues[j].addActionListener(new ActionListener(){
-	    	 public void actionPerformed(ActionEvent E) {
-	    		 
-	    	 }
-	     });
+	      jtfPropValues[j].addActionListener(this);
 	 
 	      //Add JTextField object to JPanel
 	      jpPropValues.add(jtfPropValues[j]);
@@ -236,7 +234,8 @@ public class JFrameExt extends JFrame implements ActionListener {
 	 
 	      //Get the property name and the property value from the
 	      //JLabel and JTextfield corresponding to the i value.
-	    
+	      propValue = jtfPropValues[i].getText();
+	      propName = jlbPropNames[i].getName();
 	 
 	 
 	      //Note that the property index for the above property in the pd
