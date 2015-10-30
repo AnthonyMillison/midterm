@@ -21,14 +21,30 @@ public class Circ extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		if (myBackColor.equalsIgnoreCase("blue")) {
+			this.setBackground(Color.BLUE);
+		}
+		if (myBackColor.equalsIgnoreCase("green")) {
+			this.setBackground(Color.GREEN);
+		}
+		if (myBackColor.equalsIgnoreCase("yellow")) {
+			this.setBackground(Color.YELLOW);
+		}
 		Graphics2D g2d= (Graphics2D)g;
 		if (myBackColor.equalsIgnoreCase("blue")) {
 			this.setBackground(Color.BLUE);
 		}
 		if (myFillColor.equalsIgnoreCase("yes")) {
-			g2d.drawOval(myXStart, myYStart, myWidth, myHeight);
-		} else {
+			if(myForeColor.equalsIgnoreCase("blue")){
+				this.setForeground(Color.BLUE);
+			}
+			
+			if(myForeColor.equalsIgnoreCase("green")){
+				this.setForeground(Color.GREEN);
+			}
 			g2d.fillOval(myXStart, myYStart, myWidth, myHeight);
+		} else {
+			g2d.drawOval(myXStart, myYStart, myWidth, myHeight);
 		}
 	}
 	
