@@ -136,15 +136,19 @@ public class JFrameExt extends JFrame implements ActionListener {
 			 
 			    //Get an array of PropertyDescriptor objects from BeanInfo object.
 			    pd = bi.getPropertyDescriptors ( );
-			 
+			    
+			  
+			    
 			    String propName ;
 			    for (int i=0; i< pd.length; i++)
 			    {
+			      
 			      //Get property name from corresponding PropertyDescriptor array element.
 			      //Set property name in the corresponding JLabel array element.
 			      propName  =  pd [i].getName ( );
 			 
 			      //Set propName as the text for the corresponding JLable.
+			     
 			      jlbPropNames[i].setText(propName);
 			 
 			      Method  mget = pd[i].getReadMethod();
@@ -168,6 +172,12 @@ public class JFrameExt extends JFrame implements ActionListener {
 			       jtfPropValues[i].setText(sobj);
 			 
 			  }
+			    
+			   for ( int j = pd.length; j < 10; j++){
+				   jlbPropNames[j].setText(null);
+				   jtfPropValues[j].setText(null);
+			   }
+			    
 			}
 		});
 		jcboClassName.setEditable(true);
